@@ -32,6 +32,6 @@ licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.0")
 
-libraryDependencies += "com.lihaoyi" % "ammonite" % "1.0.1" % Test cross CrossVersion.full
+//libraryDependencies += "com.lihaoyi" % "ammonite" % "1.0.1" % Test cross CrossVersion.full
 
 //initialCommands in (Test, console) := """ammonite.Main().run()"""

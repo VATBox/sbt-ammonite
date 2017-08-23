@@ -9,8 +9,6 @@ object AmmoniteReplPlugin extends AutoPlugin {
 
   override def trigger = allRequirements
 
-  //  override def requires = JvmPlugin
-
   object autoImport {
     lazy val ammoniteVersion = settingKey[String]("Ammonite version")
 //    lazy val ammoniteMain = settingKey[String]("Ammonite main class")
@@ -28,8 +26,14 @@ object AmmoniteReplPlugin extends AutoPlugin {
   override lazy val globalSettings = Seq()
 
   def runTask(dependencyClasspath: TaskKey[Classpath], config: Configuration, mainClass: String, arguments: String*) = //: Initialize[Task[Unit]] =
-    (dependencyClasspath in config, runner in (config, run), streams) map { (cp, r, s) =>
-      toError(r.run(mainClass, data(cp), arguments, s.log))
+//    (dependencyClasspath in config, runner in (config, run), streams) map { (cp, r, s) =>
+//      r.run(mainClass, data(cp), arguments, s.log) foreach sys.error
+//    }
+    Def task {
+      val cp = (dependencyClasspath in config).value
+      val r = (runner in(config, run)).value
+      val s = streams.value
+      r.run(mainClass, data(cp), arguments, s.log) foreach sys.error
     }
 
   def loadSource(dependencyClasspath: TaskKey[Classpath]) = {
