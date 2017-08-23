@@ -51,7 +51,7 @@ object AmmoniteReplPlugin extends AutoPlugin {
 
   val ammoniteMain = "ammonite.Main"
   override lazy val projectSettings =  Seq(
-    ammoniteVersion := "1.0.1",
+    ammoniteVersion := "1.0.2",
     ammoniteArgs := Nil,
 
     libraryDependencies += "com.lihaoyi" % "ammonite" % ammoniteVersion.value % Test cross CrossVersion.full,
