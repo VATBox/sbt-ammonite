@@ -11,11 +11,12 @@ Installation
 ### Stable version
 Add the following lines to one of these files:
 - The project-specific file at `project/plugins.sbt`
-- Your global file at `~/.sbt/0.13/plugins/sbt-ammonite.sbt`
+- Your global file at `~/.sbt/0.13/plugins/sbt-ammonite.sbt` (for sbt 0.13.x)
+- Your global file at `~/.sbt/1.0/plugins/sbt-ammonite.sbt` (for sbt 1.0.x)
 
 ```sbt
 resolvers += Resolver.bintrayIvyRepo("vatbox-oss", "sbt-plugins")
-addSbtPlugin("com.vatbox" % "sbt-ammonite" % "0.1.0")
+addSbtPlugin("com.vatbox" % "sbt-ammonite" % "0.1.1")
 ```
 
 Usage

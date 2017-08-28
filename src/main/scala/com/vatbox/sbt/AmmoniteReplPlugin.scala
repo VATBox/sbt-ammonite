@@ -25,7 +25,7 @@ object AmmoniteReplPlugin extends AutoPlugin {
 
   override lazy val globalSettings = Seq()
 
-  def runTask(dependencyClasspath: TaskKey[Classpath], config: Configuration, mainClass: String, arguments: String*) = //: Initialize[Task[Unit]] =
+  def runTask(dependencyClasspath: TaskKey[Classpath], config: Configuration, mainClass: String, arguments: String*): sbt.Def.Initialize[Task[Unit]] =
 //    (dependencyClasspath in config, runner in (config, run), streams) map { (cp, r, s) =>
 //      r.run(mainClass, data(cp), arguments, s.log) foreach sys.error
 //    }
@@ -33,7 +33,8 @@ object AmmoniteReplPlugin extends AutoPlugin {
       val cp = (dependencyClasspath in config).value
       val r = (runner in(config, run)).value
       val s = streams.value
-      r.run(mainClass, data(cp), arguments, s.log) foreach sys.error
+      r.run(mainClass, data(cp), arguments, s.log)
+//      val a = myR foreach sys.error
     }
 
   def loadSource(dependencyClasspath: TaskKey[Classpath]) = {

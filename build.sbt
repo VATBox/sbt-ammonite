@@ -1,8 +1,18 @@
 name := """sbt-ammonite"""
 organization := "com.vatbox"
-git.baseVersion := "0.1.0"
+//git.baseVersion := "0.1.1"
 
-scalaVersion := "2.10.6"
+//scalaVersion := "2.10.6"
+scalaVersion := "2.12.2"
+//sbtVersion in pluginCrossBuild := "1.0.0"
+sbtVersion in Global := "1.0.0"
+
+crossSbtVersions := Vector("0.13.16", "1.0.0")
+
+scalaCompilerBridgeSource := {
+  val sv = appConfiguration.value.provider.id.version
+  ("org.scala-sbt" % "compiler-interface" % sv % "component").sources
+}
 
 sbtPlugin := true
 
@@ -20,7 +30,7 @@ bintrayOrganization := Option("vatbox-oss")
 bintrayVcsUrl := Option("""git@github.com:VATBox/sbt-ammonite.git""")
 bintrayPackageLabels := Seq("sbt","plugin")
 
-initialCommands in console := """import com.vatbox.sbt._"""
+//initialCommands in console := """import com.vatbox.sbt._"""
 
 // set up 'scripted; sbt plugin for testing sbt plugins
 ScriptedPlugin.scriptedSettings
@@ -30,7 +40,6 @@ scriptedLaunchOpts := { scriptedLaunchOpts.value ++
 scriptedBufferLog := false
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.0")
 
 //libraryDependencies += "com.lihaoyi" % "ammonite" % "1.0.1" % Test cross CrossVersion.full
 
